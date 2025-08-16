@@ -1,0 +1,65 @@
+Cabe mencionar que al ejecutar el código se presenta la siguiente información (excepto las explicaciones).
+También se guardarán 4 gráficas, dos de ellas son histogramas para la división de agrupación por clusteres. Mientras que las últimas dos es una representación de las zonas de concurrencia en Nueva York (lugar del registro del dataset).
+
+Puntuación de silueta:
+Es una métrica que evalúa la calidad de la agrupación de datos, indicando qué tan bien se ajustan los puntos a sus respectivos clústeres y qué tan distintos son esos clústeres entre sí.
+
+--- Agrupamiento por Distancia ---
+Puntuación de la Silueta para Distancia: 0.6937
+
+--- Agrupamiento por Duración ---
+Puntuación de la Silueta para Duración: 0.5960
+
+--- Agrupamiento por Zona ---
+Puntuación de la Silueta para Zona: 0.3340
+
+--- Análisis de Hallazgos y Recomendaciones para la Compañía de Taxis ---
+
+Características promedio de los clústeres de Distancia:
+cluster_distancia
+0     7.322257
+1     1.901544
+2    23.222345
+Name: distancia_km, dtype: float64
+
+Características promedio de los clústeres de Duración:
+cluster_duracion
+0    1083.246377
+1     445.477612
+2    2125.465517
+Name: trip_duration, dtype: float64
+
+Centroides de los clústeres de Zona:
+
+Hay que recordar que los centroides son punetos representativos de cada grupo o cluster.
+
+Centroides de Puntos de Recogida:
+              pickup_longitude  pickup_latitude
+cluster_zona                                   
+0                   -73.989939        40.738114
+1                   -73.787271        40.649318
+2                   -73.964153        40.772701
+3                   -73.945307        40.755878
+
+Análisis de la distribución de viajes por zona y duración:
+tipo_viaje                 Viaje Corto  Viaje Largo  Viaje Medio
+nombre_zona                                                     
+Zona Aeropuerto/Periferia            1           13           15
+Zona Central                       188           17          114
+Zona Residencial                     1            7            2
+Zona de Tránsito                   145           21           76
+
+Recomendaciones Estratégicas (creo que ería óptimo que dijera esto yo, pues es en sí los resultados de este rollo):
+
+1. Estrategia de Asignación de Taxis por Zona (Hallazgo: Clústeres de Zonas de Alta Demanda):
+- El clúster 'Zona Central' tiene la mayor densidad de viajes. La mayoría de los viajes, tanto de recogida como de bajada, se concentran en esta zona. Sugerencia: Asignar un mayor número de taxis en esta área en horas pico para maximizar la disponibilidad y reducir los tiempos de espera.
+
+2. Estrategia de Flota y Precios (Hallazgo: Clústeres de Duración y Distancia):
+- 'Viajes Largos': Estos trayectos tienen la mayor duración promedio y probablemente cubren distancias más grandes. Sugerencia: Considerar tarifas especiales o flotas de vehículos más eficientes para estos viajes que suelen ser más rentables. El análisis de distancia confirma que estos viajes largos se asocian a grandes distancias.
+- 'Viajes Cortos': Son los viajes más frecuentes, pero con menor duración y distancia. Sugerencia: Incentivar a los conductores a tomar estos viajes o agruparlos de manera eficiente. Podrían ser ideales para vehículos eléctricos.
+
+3. Planificación de Rutas (Hallazgo: Correlación entre Duración y Zona):
+- Hay patrones específicos entre las zonas y el tipo de viaje (corto, medio, largo). Por ejemplo, si la 'Zona Aeropuerto/Periferia' se asocia con 'Viajes Largos', se pueden diseñar rutas predeterminadas para optimizar el trayecto y evitar congestionamientos.
+
+4. Optimización Operativa (Hallazgo: Patrones de Puntos de Subida/Bajada):
+- Los clústeres de zonas revelan los puntos calientes. Sugerencia: Utilizar esta información para guiar a los taxis vacíos hacia las áreas de alta demanda y reducir así el tiempo inactivo, incrementando las ganancias.
